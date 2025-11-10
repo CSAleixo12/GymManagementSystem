@@ -1,9 +1,17 @@
+"""
+Gym Management System
+Editor: CSAleixo12
+
+Melhorias realizadas:
+- Corrigido import de DateField (removido wtforms.fields.html5, compatível com WTForms 3.x+)
+- Removido flask_script e substituído por app.run() nativa do Flask
+- Servidor agora totalmente compatível com versões recentes de Flask e WTForms
+"""
+
 from flask import Flask, render_template, flash, redirect, url_for, request, session, logging
 from flask_mysqldb import MySQL
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators, RadioField, SelectField, IntegerField
-from wtforms.fields.html5 import DateField
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators, RadioField, SelectField, IntegerField, DateField
 from passlib.hash import sha256_crypt
-from flask_script import Manager
 from functools import wraps
 from datetime import datetime
 
@@ -691,7 +699,4 @@ def logout():
 if __name__ == "__main__":
 	app.secret_key = '528491@JOKER'
 	app.debug = True
-	manager = Manager(app)
-	#manager.secret_key = '528491@siva'
-	manager.run()
-	#app.run()
+	app.run(host='0.0.0.0', port=5000)
